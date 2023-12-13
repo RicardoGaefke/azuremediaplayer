@@ -20,8 +20,10 @@ const VideoAzureMediaPlayer = (props: VideoAzureMediaPlayerProps): JSX.Element =
 
   // @ts-expect-error tsconfig ignoring the ./Types folder
   const playerOptions: amp.Player.Options = {
-    autoplay: true,
-    controls: false,
+    autoplay: false,
+    controls: true,
+    width: "640",
+    height: "400",
     playbackSpeed: {
       enabled: true,
       initialSpeed: 1.0,
@@ -43,8 +45,10 @@ const VideoAzureMediaPlayer = (props: VideoAzureMediaPlayerProps): JSX.Element =
   };
 
   const setPlayer = (): void => {
+    const playerElement = videoAMPRef.current;
+
     const myPlayer = window.amp(
-      videoAMPRef.current, playerOptions,
+      playerElement, playerOptions,
     );
 
     myPlayer.src([{
@@ -56,6 +60,8 @@ const VideoAzureMediaPlayer = (props: VideoAzureMediaPlayerProps): JSX.Element =
       }],
     }],
     );
+
+    console.log('Player activated');
 
     // myPlayer.addEventListener('click', onPause);
     // myPlayer.addEventListener('durationchange', durationChange);
@@ -70,12 +76,11 @@ const VideoAzureMediaPlayer = (props: VideoAzureMediaPlayerProps): JSX.Element =
   }, []);
 
   return (
-    <Box
-      width="large"
-    >
+    <Box fill>
       <video
         id="videoAMP"
         ref={videoAMPRef}
+        className="azuremediaplayer amp-big-play-centered amp-default-skin"
       />
     </Box>
   );
