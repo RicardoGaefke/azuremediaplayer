@@ -21,7 +21,7 @@ const VideoAzureMediaPlayer = (props: VideoAzureMediaPlayerProps): JSX.Element =
   // @ts-expect-error tsconfig ignoring the ./Types folder
   const playerOptions: amp.Player.Options = {
     autoplay: true,
-    controls: false,
+    controls: true,
     playbackSpeed: {
       enabled: true,
       initialSpeed: 1.0,
@@ -76,6 +76,7 @@ const VideoAzureMediaPlayer = (props: VideoAzureMediaPlayerProps): JSX.Element =
       <video
         id="videoAMP"
         ref={videoAMPRef}
+        className="azuremediaplayer amp-big-play-centered amp-default-skin"
       />
     </Box>
   );
